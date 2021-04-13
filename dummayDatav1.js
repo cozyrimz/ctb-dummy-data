@@ -16,7 +16,7 @@
 
 
 
-/*** Source Data Page 1 ***/
+/*** Source Data Page ***/
 
 
 // The 6 cards on this page will call the following api:
@@ -36,7 +36,7 @@ const importStatusResponse = {
 };
 
 
-/*** Scenario Planning - Page 3 ***/
+/*** Scenario Planning Page ***/
 
 /*Parent Part Number */
 /// Dropdown for Parent part number will return an array of parts
