@@ -21,7 +21,7 @@
 // Issue -> display yellow excamantion mark on card
 // Verified -> display green check mark on card
 
-const importStatusAPIPath = `${process.env.api_url}/api/v1/importStatus`; //GET Request
+const importStatusAPIPath = `${process.env.api_url}/api/dataSource/v1/importStatus`; //GET Request
 const importStatusResponse = {
   billOfMaterials: 'Verified',
   inventory: 'Issue',
@@ -40,13 +40,13 @@ const importStatusResponse = {
 // This will rerender the entire page as all of the metrics
 // on the page will require a parent part number as an input.
 // You may want to use the react context api to reference this for child components.
-const parentPartAPIPath = `${process.env.api_url}/api/v1/parentParts`; //GET Request
+const parentPartAPIPath = `${process.env.api_url}/api/part/v1/parentParts`; //GET Request
 const parentPartResponse = ['AA,BB,CC'];
 
 
 /* summary boxes */
 // Api to get data for the cards to the right of the parent part drop down
-const summaryStatsAPIPath = `${process.env.api_url}/api/v1/summaryStats`; //GET Request
+const summaryStatsAPIPath = `${process.env.api_url}/api/ctb/v1/summaryStats`; //GET Request
 const summaryStatsResponse = {
   ctbWithInventory: 34,
   ctbWithDelivery: 48,
@@ -58,7 +58,7 @@ const summaryStatsResponse = {
 /* Production Forecast */
 // this will be an array of objects response for the bar/line graph near the top of the page
 // pass in the parent part as metioned above
-const productionForecastAPIPath = `${process.env.api_url}/api/v1/productionForecast`; //POST Request
+const productionForecastAPIPath = `${process.env.api_url}/api/ctb/v1/productionForecast`; //POST Request
 const productionForecastRequestBody = {
   "parentPart": "AA"
 };
@@ -86,7 +86,7 @@ const productionForecastResponse = [
 // if we have 0 or a negative number -> red number
 // if we have a delivery on that day which can be checked with the deliveries api mentioned below then color the background of the cell green.
 
-const clearToBuildTableAPIPath = `${process.env.api_url}/api/v1/clearToBuildTable`; //POST Request
+const clearToBuildTableAPIPath = `${process.env.api_url}/api/ctb/v1/clearToBuildTable`; //POST Request
 const clearToBuildTableRequestBody = {
   "parentPart": "AA",
   "includeDeliveries": true,
@@ -165,7 +165,7 @@ const clearToBuildTableResponse = {
 //Deliveries - Pass in a parent part number to this api
 // to get an object of part keys corresponding to their delivery dates in an array
 // this will be used in conjunction with the clear to build table api to node when a delivery of a part will come in to highlight it green
-const partDeliverySummaryAPIPath = `${process.env.api_url}/api/partDeliverySummary`; //POST Request
+const partDeliverySummaryAPIPath = `${process.env.api_url}/api/delivery/v1/partDeliverySummary`; //POST Request
 const partDeliverySummaryRequestBody = {
   "parentPart": "AA"
 };
@@ -185,7 +185,7 @@ const partDeliverySummaryResponse = {
   // the options for the drop down can be 'Delivered' or 'Pending' for now
 
 // call the api with a parent part number and the limit of number of entries that is needed, int his case it is 5
-const recentDeliveriesAPIPath = `${process.env.api_url}/api/recentDeliveries`; //POST Request
+const recentDeliveriesAPIPath = `${process.env.api_url}/api/delivery/v1/recentDeliveries`; //POST Request
 const recentDeliveriesRequestBody = {
   "parentPart": "AA",
   "limit":5
@@ -200,7 +200,7 @@ const recentDeliveriesResponse = [
 ]
 
 // this is the api to call to updat the status when switching from pending to delivered, then refresh the table to reflect the new status
-const changeDeliveryStatusAPIPath = `${process.env.api_url}/api/v1/changeDeliveryStatus`; //PUT Request
+const changeDeliveryStatusAPIPath = `${process.env.api_url}/api/delivery/v1/changeDeliveryStatus`; //PUT Request
 const changeDeliveryStatusBody = {
   "partId":"bakdcic",
   "newStatus":"Delivered"
