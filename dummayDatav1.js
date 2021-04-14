@@ -11,12 +11,8 @@
   8. Sample data is provided below, please simulate api calls but hard code data below as the response instead for front end for now
 */
 
-
-
-
-
-
-/*** Source Data Page ***/
+/*------------------------------------------------------------------------------*/
+/*** Source Data Summary Page ***/
 
 
 // The 6 cards on this page will call the following api:
@@ -25,7 +21,7 @@
 // Issue -> display yellow excamantion mark on card
 // Verified -> display green check mark on card
 
-const importStatusAPIPath = `${process.env.api_url}/api/importStatus`; //GET Request
+const importStatusAPIPath = `${process.env.api_url}/api/v1/importStatus`; //GET Request
 const importStatusResponse = {
   billOfMaterials: 'Verified',
   inventory: 'Issue',
@@ -35,7 +31,7 @@ const importStatusResponse = {
   otherInformation: null,
 };
 
-
+/*------------------------------------------------------------------------------*/
 /*** Scenario Planning Page ***/
 
 /*Parent Part Number */
@@ -44,13 +40,13 @@ const importStatusResponse = {
 // This will rerender the entire page as all of the metrics
 // on the page will require a parent part number as an input.
 // You may want to use the react context api to reference this for child components.
-const parentPartAPIPath = `${process.env.api_url}/api/parentParts`; //GET Request
+const parentPartAPIPath = `${process.env.api_url}/api/v1/parentParts`; //GET Request
 const parentPartResponse = ['AA,BB,CC'];
 
 
 /* summary boxes */
 // Api to get data for the cards to the right of the parent part drop down
-const summaryStatsAPIPath = `${process.env.api_url}/api/summaryStats`; //GET Request
+const summaryStatsAPIPath = `${process.env.api_url}/api/v1/summaryStats`; //GET Request
 const summaryStatsResponse = {
   ctbWithInventory: 34,
   ctbWithDelivery: 48,
@@ -62,7 +58,7 @@ const summaryStatsResponse = {
 /* Production Forecast */
 // this will be an array of objects response for the bar/line graph near the top of the page
 // pass in the parent part as metioned above
-const productionForecastAPIPath = `${process.env.api_url}/api/productionForecast`; //POST Request
+const productionForecastAPIPath = `${process.env.api_url}/api/v1/productionForecast`; //POST Request
 const productionForecastRequestBody = {
   "parentPart": "AA"
 };
@@ -90,7 +86,7 @@ const productionForecastResponse = [
 // if we have 0 or a negative number -> red number
 // if we have a delivery on that day which can be checked with the deliveries api mentioned below then color the background of the cell green.
 
-const clearToBuildTableAPIPath = `${process.env.api_url}/api/clearToBuildTable`; //POST Request
+const clearToBuildTableAPIPath = `${process.env.api_url}/api/v1/clearToBuildTable`; //POST Request
 const clearToBuildTableRequestBody = {
   "parentPart": "AA",
   "includeDeliveries": true,
@@ -204,10 +200,30 @@ const recentDeliveriesResponse = [
 ]
 
 // this is the api to call to updat the status when switching from pending to delivered, then refresh the table to reflect the new status
-const changeDeliveryStatusAPIPath = `${process.env.api_url}/api/changeDeliveryStatus`; //PUT Request
+const changeDeliveryStatusAPIPath = `${process.env.api_url}/api/v1/changeDeliveryStatus`; //PUT Request
 const changeDeliveryStatusBody = {
   "partId":"bakdcic",
   "newStatus":"Delivered"
 }
-
 // response status code will be 20x if good or 50x if error
+
+
+/*------------------------------------------------------------------------------*/
+
+/**** Source Data -> Deliveries Page ****/
+
+/* select data source/ upload */
+const uploadAPIPath = `${process.env.api_url}/api/dataSource/v1/uploadFile`
+// response will be  200 if file was recieed proprely
+
+/* upload summary for file*/
+const deliveriesUploadSummaryAPIPath = `${process.env.api_url}/api/dataSource/v1/deliverySummary`
+const deliveriesUploadSummaryResponse = {
+  content:'Delivery',
+  lastUpdated:'2021-02-21T05:57:18Z',
+  lastUpdatedFileName:'last-updated-file.xlsx'
+}
+
+/* Recent and Upcoming Deliveries */
+// exact same path, body, and response as above but parentPart is not needed as an 
+// in put into the body
