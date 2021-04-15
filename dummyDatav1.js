@@ -26,7 +26,7 @@ const importStatusResponse = {
   billOfMaterials: 'Verified',
   inventory: 'Issue',
   deliveries: null,
-  forecast: 'Issue',
+  forecast: 'Error',
   productionActuals: null,
   otherInformation: null,
 };
