@@ -1,4 +1,3 @@
-
 /*** GENERAL Requirements FOR REACT CODE ******/
 /*
   1. Use functional reaction components, not class components
@@ -13,7 +12,6 @@
 
 /*------------------------------------------------------------------------------*/
 /*** Source Data Summary Page ***/
-
 
 // The 6 cards on this page will call the following api:
 
@@ -43,38 +41,37 @@ const importStatusResponse = {
 const parentPartAPIPath = `${process.env.api_url}/api/part/v1/parentParts`; //GET Request
 const parentPartResponse = ['AA,BB,CC'];
 
-
 /* summary boxes */
 // Api to get data for the cards to the right of the parent part drop down
 const summaryStatsAPIPath = `${process.env.api_url}/api/ctb/v1/summaryStats`; //POST Request
 const summaryStatsRequestBody = {
-  "parentPart": "AA"
+  parentPart: 'AA',
 };
 const summaryStatsResponse = {
   ctbWithInventory: 34,
   ctbWithDelivery: 48,
-  firstShortage = '06/20/2021',
+  firstShortage: '06/20/2021',
   yearToDateBuild: 48,
-  yearToDateBacklog:10
-}
+  yearToDateBacklog: 10,
+};
 
 /* Production Forecast */
 // this will be an array of objects response for the bar/line graph near the top of the page
 // pass in the parent part as metioned above
 const productionForecastAPIPath = `${process.env.api_url}/api/ctb/v1/productionForecast`; //POST Request
 const productionForecastRequestBody = {
-  "parentPart": "AA"
+  parentPart: 'AA',
 };
 const productionForecastResponse = [
-  {date:'2/5/2021', cumulativeTarget:5, weeklyTarget:5},
-  {date:'2/12/2021', cumulativeTarget:5, weeklyTarget:5},
-  {date:'2/19/2021', cumulativeTarget:20, weeklyTarget:10},
-  {date:'2/26/2021', cumulativeTarget:20, weeklyTarget:10},
-  {date:'3/5/2021', cumulativeTarget:25, weeklyTarget:15},
-  {date:'3/12/2021', cumulativeTarget:30, weeklyTarget:15},
-  {date:'3/19/2021', cumulativeTarget:35, weeklyTarget:20},
-  {date:'3/26/2021', cumulativeTarget:40, weeklyTarget:25}
-]
+  { date: '2/5/2021', cumulativeTarget: 5, weeklyTarget: 5 },
+  { date: '2/12/2021', cumulativeTarget: 5, weeklyTarget: 5 },
+  { date: '2/19/2021', cumulativeTarget: 20, weeklyTarget: 10 },
+  { date: '2/26/2021', cumulativeTarget: 20, weeklyTarget: 10 },
+  { date: '3/5/2021', cumulativeTarget: 25, weeklyTarget: 15 },
+  { date: '3/12/2021', cumulativeTarget: 30, weeklyTarget: 15 },
+  { date: '3/19/2021', cumulativeTarget: 35, weeklyTarget: 20 },
+  { date: '3/26/2021', cumulativeTarget: 40, weeklyTarget: 25 },
+];
 
 /* Clear to Build Table */
 
@@ -91,9 +88,9 @@ const productionForecastResponse = [
 
 const clearToBuildTableAPIPath = `${process.env.api_url}/api/ctb/v1/clearToBuildTable`; //POST Request
 const clearToBuildTableRequestBody = {
-  "parentPart": "AA",
-  "includeDeliveries": true,
-  "includeBacklog": false
+  parentPart: 'AA',
+  includeDeliveries: true,
+  includeBacklog: false,
 };
 const clearToBuildTableResponse = {
   columns: [
@@ -170,7 +167,7 @@ const clearToBuildTableResponse = {
 // this will be used in conjunction with the clear to build table api to node when a delivery of a part will come in to highlight it green
 const partDeliverySummaryAPIPath = `${process.env.api_url}/api/delivery/v1/partDeliverySummary`; //POST Request
 const partDeliverySummaryRequestBody = {
-  "parentPart": "AA"
+  parentPart: 'AA',
 };
 const partDeliverySummaryResponse = {
   AB: ['3/17/2021', '4/11/2021'],
@@ -179,54 +176,98 @@ const partDeliverySummaryResponse = {
   AAC: ['3/17/2021', '4/11/2021'],
 };
 
-
-
-
 /* Recent and Upcoming Deliveries */
 
 // this will be a table that is editable with  drop down under the status column on the very right
-  // the options for the drop down can be 'Delivered' or 'Pending' for now
+// the options for the drop down can be 'Delivered' or 'Pending' for now
 
 // call the api with a parent part number and the limit of number of entries that is needed, int his case it is 5
 const recentDeliveriesAPIPath = `${process.env.api_url}/api/delivery/v1/recentDeliveries`; //POST Request
 const recentDeliveriesRequestBody = {
-  "parentPart": "AA",
-  "limit":5
+  parentPart: 'AA',
+  limit: 5,
 };
 const recentDeliveriesResponse = [
-  {id:'bakdcic',partNumber:'AB', supplier:'Fork Co', deliveryDate:'3/26/2021',Qty:10,trackingNumber:'1ZAF234U82934',status:'Pending'},
-  {id:'lidkecc',partNumber:'AC', supplier:'Fork Co', deliveryDate:'3/19/2021',Qty:20,trackingNumber:'1Z34KFJFIFKLD',status:'Pending'},
-  {id:'wefidkc',partNumber:'AAC', supplier:'Fork Co', deliveryDate:'3/19/2021',Qty:40,trackingNumber:'1ZLJEIJIIIIIJ',status:'Delivered'},
-  {id:'zvmvneii',partNumber:'AAC', supplier:'Fork Co', deliveryDate:'3/12/2021',Qty:10,trackingNumber:'1Z35857830295',status:'Pending'},
-  {id:'irure8jf',partNumber:'AAB', supplier:'Fork Co', deliveryDate:'3/5/2021',Qty:20,trackingNumber:'1Z9338889FF99',status:'Delivered'},
-  {id:'fklafe9f',partNumber:'AAC', supplier:'Fork Co', deliveryDate:'2/26/2021',Qty:100,trackingNumber:'1Z938FJ8389F0',status:'Pending'},
-]
+  {
+    id: 'bakdcic',
+    partNumber: 'AB',
+    supplier: 'Fork Co',
+    deliveryDate: '3/26/2021',
+    Qty: 10,
+    trackingNumber: '1ZAF234U82934',
+    status: 'Pending',
+  },
+  {
+    id: 'lidkecc',
+    partNumber: 'AC',
+    supplier: 'Fork Co',
+    deliveryDate: '3/19/2021',
+    Qty: 20,
+    trackingNumber: '1Z34KFJFIFKLD',
+    status: 'Pending',
+  },
+  {
+    id: 'wefidkc',
+    partNumber: 'AAC',
+    supplier: 'Fork Co',
+    deliveryDate: '3/19/2021',
+    Qty: 40,
+    trackingNumber: '1ZLJEIJIIIIIJ',
+    status: 'Delivered',
+  },
+  {
+    id: 'zvmvneii',
+    partNumber: 'AAC',
+    supplier: 'Fork Co',
+    deliveryDate: '3/12/2021',
+    Qty: 10,
+    trackingNumber: '1Z35857830295',
+    status: 'Pending',
+  },
+  {
+    id: 'irure8jf',
+    partNumber: 'AAB',
+    supplier: 'Fork Co',
+    deliveryDate: '3/5/2021',
+    Qty: 20,
+    trackingNumber: '1Z9338889FF99',
+    status: 'Delivered',
+  },
+  {
+    id: 'fklafe9f',
+    partNumber: 'AAC',
+    supplier: 'Fork Co',
+    deliveryDate: '2/26/2021',
+    Qty: 100,
+    trackingNumber: '1Z938FJ8389F0',
+    status: 'Pending',
+  },
+];
 
 // this is the api to call to updat the status when switching from pending to delivered, then refresh the table to reflect the new status
 const changeDeliveryStatusAPIPath = `${process.env.api_url}/api/delivery/v1/changeDeliveryStatus`; //PUT Request
 const changeDeliveryStatusBody = {
-  "partId":"bakdcic",
-  "newStatus":"Delivered"
-}
+  partId: 'bakdcic',
+  newStatus: 'Delivered',
+};
 // response status code will be 20x if good or 50x if error
-
 
 /*------------------------------------------------------------------------------*/
 
 /**** Source Data -> Deliveries Page ****/
 
 /* select data source/ upload */
-const uploadAPIPath = `${process.env.api_url}/api/dataSource/v1/uploadFile`
+const uploadAPIPath = `${process.env.api_url}/api/dataSource/v1/uploadFile`;
 // response will be  200 if file was recieed proprely
 
 /* upload summary for file*/
-const deliveriesUploadSummaryAPIPath = `${process.env.api_url}/api/dataSource/v1/deliverySummary`
+const deliveriesUploadSummaryAPIPath = `${process.env.api_url}/api/dataSource/v1/deliverySummary`;
 const deliveriesUploadSummaryResponse = {
-  content:'Delivery',
-  lastUpdated:'2021-02-21T05:57:18Z',
-  lastUpdatedFileName:'last-updated-file.xlsx'
-}
+  content: 'Delivery',
+  lastUpdated: '2021-02-21T05:57:18Z',
+  lastUpdatedFileName: 'last-updated-file.xlsx',
+};
 
 /* Recent and Upcoming Deliveries */
-// exact same path, body, and response as above but parentPart is not needed as an 
+// exact same path, body, and response as above but parentPart is not needed as an
 // in put into the body
