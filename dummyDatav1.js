@@ -46,7 +46,10 @@ const parentPartResponse = ['AA,BB,CC'];
 
 /* summary boxes */
 // Api to get data for the cards to the right of the parent part drop down
-const summaryStatsAPIPath = `${process.env.api_url}/api/ctb/v1/summaryStats`; //GET Request
+const summaryStatsAPIPath = `${process.env.api_url}/api/ctb/v1/summaryStats`; //POST Request
+const summaryStatsRequestBody = {
+  "parentPart": "AA"
+};
 const summaryStatsResponse = {
   ctbWithInventory: 34,
   ctbWithDelivery: 48,
