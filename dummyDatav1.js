@@ -245,10 +245,14 @@ const recentDeliveriesResponse = [
 ];
 
 // this is the api to call to updat the status when switching from pending to delivered, then refresh the table to reflect the new status
-const changeDeliveryStatusAPIPath = `${process.env.api_url}/api/delivery/v1/changeDeliveryStatus`; //PUT Request
+const changeDeliveryStatusAPIPath = `${process.env.api_url}/api/delivery/v1/update`; //PUT Request
 const changeDeliveryStatusBody = {
   partId: 'bakdcic',
-  newStatus: 'Delivered',
+  estimatedDeliveryDate: '2021-02-21T05:57:18Z',
+  deliveryDesc: 'new description',
+  trackingNumber: '1ZSOMENEWtrackingNUmber',
+  estimatedQty: 10,
+  status: 'Delivered',
 };
 // response status code will be 20x if good or 50x if error
 
