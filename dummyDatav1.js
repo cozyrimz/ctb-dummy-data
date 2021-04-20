@@ -263,16 +263,58 @@ const updateDeliveryItemBody = {
 /**** Source Data -> Deliveries Page ****/
 
 /* select data source/ upload */
+//POST request with body as 'form-data' and will be parsed as form data by the back end
 const uploadAPIPath = `${process.env.api_url}/api/dataSource/v1/uploadFile`;
-// response will be  200 if file was recieed proprely
+const formData = {
+  uploadFile: '<attachment of excel/csv file>',
+  fileType: 'Excel/CSV',
+  dataType: 'deliveries',
+};
+// response will be  200 if file was recieved proprely, use upload summary befor to get columns
 
 /* upload summary for file*/
 const deliveriesUploadSummaryAPIPath = `${process.env.api_url}/api/dataSource/v1/deliverySummary`;
 const deliveriesUploadSummaryResponse = {
-  content: 'Delivery',
+  content: 'deliveries',
+  fileId: 'alkjfei2bid',
   lastUpdated: '2021-02-21T05:57:18Z',
   lastUpdatedFileName: 'last-updated-file.xlsx',
+  columnsInSheet: ['PN', 'eta', 'Status', 'etc'],
+  columnRef: {
+    partNumber: null,
+    estimatedDeliveryDate: null,
+    status: null,
+    estimatedQty: null,
+    deliveryDesc: null,
+    partType: null,
+    vendorName: null,
+    purchaseOrderNumber: null,
+    trackingNumber: null,
+    otherCategories: [],
+  },
 };
+
+// columnMapping key will be empty till user selects it.
+
+const deliveryColumnMapAPIPath = `${process.env.api_url}/api/dataSource/v1/deliveryColumnMap`;
+const deliveryColumnMapRequestBody = {
+  fileId: 'aiwefjkd', //this is taken from the upload summary above
+  columnRef: {
+    partNumber: 'PN',
+    estimatedDeliveryDate: 'eta',
+    status: 'Status',
+    estimatedQty: 'estimated_quantity',
+    deliveryDesc: 'Description',
+    partType: 'Category',
+    vendorName: 'vendor_name',
+    purchaseOrderNumber: 'pohdr_po_number',
+    trackingNumber: 'trackingNumber',
+    otherCategories: ['notes'], //if theres any other categories they want to import pass the column names as an array
+  },
+  cleanImport: true, // this indicates if we should import the file and erase deliery data, otherwise this will just add to existing delviery data
+};
+
+// 200 response will indicate no errors. Can refresh upload summary above to verify column mappings
 
 /* Recent and Upcoming Deliveries */
 // exact same path, body, and response as above but parentPart is not needed as an
