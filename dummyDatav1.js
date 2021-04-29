@@ -170,10 +170,10 @@ const partDeliverySummaryRequestBody = {
   parentPart: 'AA',
 };
 const partDeliverySummaryResponse = {
-  AB: ['3/17/2021', '4/11/2021'],
-  AC: ['3/17/2021', '4/11/2021'],
-  AAB: ['3/17/2021', '4/11/2021'],
-  AAC: ['3/17/2021', '4/11/2021'],
+  AB: ['3/12/2021', '3/19/2021'],
+  AC: ['2/5/2021', '3/5/2021'],
+  AAB: ['2/12/2021', '3/26/2021'],
+  AAC: ['2/19/2021', '3/26/2021'],
 };
 
 /* Recent and Upcoming Deliveries */
