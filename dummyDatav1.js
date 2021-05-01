@@ -245,7 +245,7 @@ const recentDeliveriesResponse = [
 ];
 
 // this is the api to call to update a delivery row which includes status update and updating any of the fields below
-const updateDeliveryItemAPIPath = `${process.env.api_url}/api/delivery/v1/update`; //PUT Request
+const updateDeliveryItemAPIPath = `${process.env.api_url}/api/delivery/v1/:itemId/update`; //PUT Request
 const updateDeliveryItemBody = {
   partId: 'bakdcic',
   estimatedDeliveryDate: '2021-02-21T05:57:18Z',
@@ -257,6 +257,10 @@ const updateDeliveryItemBody = {
   purchaseOrderNumber: 'newPONumber',
 };
 // response status code will be 20x if good or 50x if error
+
+const deleteDeliveryItemAPIPath = `${process.env.api_url}/api/delivery/v1/:itemId/delete`; // DELETE Request
+
+// response status code will be 20x
 
 /*------------------------------------------------------------------------------*/
 
